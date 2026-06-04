@@ -19,7 +19,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install MLflow
-        run: pip install mlflow==2.19.0
+        run: pip install mlflow==2.19.0 pandas numpy scikit-learn
 
       - name: Run MLflow Project
         run: |
