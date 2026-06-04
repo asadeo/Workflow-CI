@@ -18,8 +18,8 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install MLflow
-        run: pip install mlflow==2.19.0 pandas numpy scikit-learn
+      - name: Install Dependencies
+        run: pip install mlflow>=2.20.1 pandas numpy scikit-learn
 
       - name: Run MLflow Project
         run: |
@@ -40,7 +40,7 @@ jobs:
           IMAGE_NAME="${{ secrets.DOCKER_USERNAME }}/student_dropout_model:latest"
           
           echo "Membangun Docker Image untuk Run ID: $RUN_ID..."
-          mlflow models build-docker -m runs:/$RUN_ID/model -n $IMAGE_NAME --env-manager=conda
+          mlflow models build-docker -m runs:/$RUN_ID/model -n $IMAGE_NAME 
           
           echo "Mendorong Image ke Docker Hub..."
           docker push $IMAGE_NAME
